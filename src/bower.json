@@ -1,0 +1,20 @@
+{
+  "name": "Web dashboard keeper",
+  "version": "0.1.0",
+  "homepage": "https://github.com/banadiga/web-dashboard-keeper",
+  "authors": [
+    "Ihor BAnadiga <banadiga@users.noreply.github.com>"
+  ],
+  "description": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.1",
+    "jquery-tmpl": "vBeta1.0.0"
+  }
+}

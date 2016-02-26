@@ -1,0 +1,41 @@
+<categories>
+    {{each categories}}
+    <div class="panel panel-default">
+        <div class="panel-heading"><p class="panel-title">${name}</p></div>
+        <div class="panel-body">
+            <div class="panel-body">
+
+                <div class="row">
+                    {{each items}}
+                    <div class="item col-xs-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <center>
+                                    <a href="${url}" target="_blank">
+                                        {{if img }}
+                                        <img src="${img}" alt="${name}"/>
+                                        {{else}}
+                                        ${name}
+                                        {{/if}}
+                                    </a>
+                                </center>
+                            </div>
+                            <div class="panel-footer">
+                                <span class="status glyphicon glyphicon-repeat icon-refresh-animate" url="${url}"></span>
+                                <span class="glyphicon glyphicon-tags" title="${group.join()}"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{/each}}
+                </div>
+
+            </div>
+        </div>
+        {{if description }}
+        <div class="panel-footer text-description">${description}</div>
+        {{/if}}
+    </div>
+
+    {{/each}}
+</categories>
