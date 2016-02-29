@@ -1,5 +1,6 @@
 Web dashboard
 =============
+Tools for display Web dashboard with predefined/dynamic list of items. Sorted by category and groups. 
 
 How to use
 ----------
