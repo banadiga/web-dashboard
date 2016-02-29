@@ -1,0 +1,188 @@
+{
+  "categories": [
+    {
+      "name": "Application server",
+      "items": [
+        {
+          "name": "Access control Dashboard",
+          "url": "http://127.0.0.1:9999/"
+        },
+        {
+          "name": "Supervisor",
+          "url": "http://127.0.0.1:9000/",
+          "group": [
+            "supervisor"
+          ]
+        },
+        {
+          "name": "Mater Redis commander",
+          "url": "http://127.0.0.1:6100/",
+
+          "group": [
+            "master",
+            "redis"
+          ]
+        },
+        {
+          "name": "Spark master",
+          "description": "bla bla",
+          "url": "http://127.0.0.1:8080/",
+          "group": [
+            "master",
+            "spark"
+          ]
+        },
+        {
+          "name": "Data import",
+          "group": [
+            "acontrol"
+          ]
+        },
+        {
+          "name": "Data analytic",
+          "group": [
+            "acontrol"
+          ]
+        }
+      ],
+      "description": "bla bla"
+    },
+    {
+      "name": "Slave #1",
+      "items": [
+        {
+          "name": "Supervisor",
+          "url": "http://127.0.0.1:9001/",
+          "group": "supervisor"
+        },
+        {
+          "name": "Redis commander",
+          "url": "http://127.0.0.1:6101/",
+          "group": [
+            "slave",
+            "redis"
+          ]
+        },
+        {
+          "name": "Reporting api",
+          "url": "http://127.0.0.1:9901/manage/health",
+          "group": [
+            "slave",
+            "redis"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Slave #2",
+      "close": true,
+      "items": [
+        {
+          "name": "Supervisor",
+          "url": "http://127.0.0.1:9002/",
+          "group": [
+            "supervisor"
+          ]
+        },
+        {
+          "name": "Redis commander",
+          "url": "http://127.0.0.1:6101/",
+          "group": [
+            "slave",
+            "acontrol"
+          ]
+        },
+        {
+          "name": "Reporting api",
+          "url": "http://127.0.0.1:9902/manage/health",
+          "group": [
+            "slave",
+            "acontrol"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Wprker #1",
+      "items": [
+        {
+          "name": "Supervisor",
+          "url": "http://127.0.0.1:9031/",
+          "group": [
+            "supervisor"
+          ]
+        },
+        {
+          "name": "Spark worker",
+          "url": "http://127.0.0.1:8081/",
+          "group": [
+            "worker",
+            "spark"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Worker #2",
+      "items": [
+        {
+          "name": "Supervisor",
+          "url": "http://127.0.0.1:9032/",
+          "group": [
+            "supervisor"
+          ]
+        },
+        {
+          "name": "Spark worker",
+          "url": "http://127.0.0.1:8082/",
+          "group": [
+            "worker",
+            "spark"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Wprker #3",
+      "close": true,
+      "items": [
+        {
+          "name": "Supervisor",
+          "url": "http://127.0.0.1:9033/",
+          "group": [
+            "supervisor"
+          ]
+        },
+        {
+          "name": "Spark worker",
+          "url": "http://127.0.0.1:8083/",
+          "group": [
+            "worker",
+            "spark"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Worker #4",
+      "close": true,
+      "items": [
+        {
+          "name": "Supervisor",
+          "url": "http://127.0.0.1:9034/",
+          "group": [
+            "supervisor"
+          ]
+        },
+        {
+          "name": "Spark worker",
+          "url": "http://127.0.0.1:8083/",
+          "group": [
+            "worker",
+            "spark"
+          ]
+        }
+      ]
+    }
+  ]
+}

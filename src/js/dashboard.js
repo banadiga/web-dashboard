@@ -63,25 +63,27 @@ if (typeof jQuery === 'undefined') {
             buildCategories(data);
         }
 
-        checkStatus();
+        setTimeout(checkStatus, 100);
     };
 
     var checkItemStatus = function (top) {
         var url = top.getAttribute("url");
         $(top).addClass("glyphicon-repeat icon-refresh-animate");
         $.ajax({
-            url: url,
-            type: "HEAD",
-            timeout: 15000
+            url: '/cors-proxy/' + url,
+            type: "HEAD"
         }).done(function () {
             $(top).removeClass("icon-refresh-animate");
             $(top).removeClass("glyphicon-repeat");
             $(top).addClass("glyphicon-ok");
-        }).fail(function () {
+        }).fail(function (response) {
             $(top).removeClass("icon-refresh-animate");
             $(top).removeClass("glyphicon-repeat");
-            $(top).addClass("glyphicon-off");
-
+            if (response.status == 401) {
+                $(top).addClass("glyphicon-user");
+            } else {
+                $(top).addClass("glyphicon-off");
+            }
         });
     };
 
@@ -91,19 +93,6 @@ if (typeof jQuery === 'undefined') {
         })
     };
 
-    //var showHideActive = function () {
-    //    var status = this.getAttribute('status');
-    //    console.log(status);
-    //    var top = $('.glyphicon-off').parent().parent();
-    //    if (status == 'all') {
-    //        this.setAttribute('status', 'active');
-    //        top.hide("slow");
-    //    } else {
-    //        this.setAttribute('status', 'all');
-    //        top.show("fast");
-    //    }
-    //};
-
     var onLoad = function () {
         $.ajax({
             url: "api/dashboard.json", success: function (result) {
@@ -111,10 +100,9 @@ if (typeof jQuery === 'undefined') {
                 onRedrow();
             }
         });
-        //$('#show-hide-active').on( "click", showHideActive);
     };
     $(window).bind('hashchange', onRedrow);
     $(window).on('load', onLoad);
 
-    //setInterval(checkStatus, 5000);
+    setInterval(checkStatus, 20000);
 })(jQuery);

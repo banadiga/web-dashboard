@@ -19,5 +19,5 @@ bower install
 How to run locally
 ------------------
 
-To run locally use `serve-static`
-To more details go to [How to use serve-static](/ops)
+To run locally use `server`
+To more details go to [How to use server](/ops)

@@ -1,20 +1,41 @@
-How to use serve-static
-=======================
+# How to use static
 
-Install server
---------------
+## Start server locally
 
-To install `serve-static` run
+### Install server
+
+To install `server` run
 
 ```bash
-npm install serve-static
+npm install node-static
+npm install http-proxy
 ```
 
-Run serve-static
-----------------
+### Run server
 
-To start `serve-static` run
+To start `server` run
  
 ```bash
 . ./server.sh
+```
+
+
+## Use nginx dynamic proxy
+
+Use [nginx configuration](nginx)
+
+or add following configuration:
+ 
+```bash
+  # Proxy configuration
+  location /cors-proxy {
+    set $request_url $request_uri;
+    if ($request_uri ~ ^/cors-proxy/(.*)$ ) {
+      set $request_url $1;
+    }
+    proxy_pass $request_url;
+    # return X-uri in header with real url
+    add_header X-uri $request_url;
+    proxy_redirect off;
+   }
 ```
