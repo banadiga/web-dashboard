@@ -1,4 +1,4 @@
-# How to use static
+# How to use server
 
 ## Start server locally
 
