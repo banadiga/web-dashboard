@@ -94,7 +94,8 @@ if (typeof jQuery === 'undefined') {
         $(top).addClass('glyphicon-repeat icon-refresh-animate');
         $.ajax({
             url: proxyurl + url,
-            type: 'HEAD'
+            type: 'HEAD',
+            cache: false
         }).done(function () {
             $(top).removeClass('icon-refresh-animate');
             $(top).removeClass('glyphicon-repeat');
