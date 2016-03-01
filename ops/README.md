@@ -34,8 +34,8 @@ or add following configuration:
       set $request_url $1;
     }
     proxy_pass $request_url;
-    # return X-uri in header with real url
     add_header X-uri $request_url;
-    proxy_redirect off;
+    proxy_hide_header 'www-authenticate';
+    proxy_redirect    off;
    }
 ```

@@ -1,36 +1,40 @@
 <groups>
     {{each groups}}
-    <div class="panel panel-default">
-        <div class="panel-heading"><p class="panel-title">${name}</p></div>
+    <div class="panel panel-default bloc" visible="true">
+        <div class="panel-heading"><p class="panel-title">${name} <span
+                class="panel-title-continue">. . .</span></p></div>
         <div class="panel-body">
-            <div class="panel-body">
 
-                <div class="row">
-                    {{each items}}
-                    <div class="item col-xs-3">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <center>
-                                    <a href="${url}" target="_blank">
-                                        {{if img }}
-                                        <img src="${img}" alt="${name}"/>
-                                        {{else}}
-                                        ${name}
-                                        {{/if}}
-                                    </a>
-                                </center>
-                            </div>
-                            <div class="panel-footer">
-                                <span class="status glyphicon glyphicon-repeat icon-refresh-animate" url="${url}"></span>
-                                <span class="glyphicon glyphicon-tag" title="${category}"></span>
-                            </div>
+            <div class="row">
+                {{each items}}
+                <div class="item col-xs-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <center>
+                                <a href="${url}" target="_blank">
+                                    {{if img }}
+                                    <img src="${img}" alt="${name}"/>
+                                    {{else}}
+                                    ${name}
+                                    {{/if}}
+                                </a><br/>
+                                ${text}
+                            </center>
+                        </div>
+                        <div class="panel-footer">
+                            <span data-toggle="tooltip" data-placement="bottom"
+                                  class="status glyphicon glyphicon-repeat icon-refresh-animate"
+                                  url="${url}" title="Loading..."></span>
+                            <span data-toggle="tooltip" data-placement="bottom"
+                                  class="glyphicon glyphicon-tag"
+                                  title="Category: ${category}"></span>
                         </div>
                     </div>
-
-                    {{/each}}
                 </div>
 
+                {{/each}}
             </div>
+
         </div>
         {{if description }}
         <div class="panel-footer text-description">${description}</div>

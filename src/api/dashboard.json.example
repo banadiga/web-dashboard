@@ -4,120 +4,144 @@
       "name": "Application server",
       "items": [
         {
-          "name": "Access control Dashboard",
-          "url": "http://127.0.0.1:9999/"
-        },
-        {
-          "name": "Supervisor",
-          "url": "http://127.0.0.1:9000/",
+          "name": "Access control Dashboard.",
+          "text": "User Dashboard",
+          "url": "http://10.1.0.100:9999/",
           "group": [
-            "supervisor"
+            "Master",
+            "aControl"
           ]
         },
         {
-          "name": "Mater Redis commander",
-          "url": "http://127.0.0.1:6100/",
-
+          "name": "Supervisor",
+          "url": "http://10.1.0.100:9001/",
+          "text": "Supervisor Dashboard on master.",
           "group": [
-            "master",
-            "redis"
+            "Master",
+            "Supervisor"
+          ]
+        },
+        {
+          "name": "Redis commander",
+          "url": "http://10.1.0.100:8081/",
+          "text": "Mater node read/write.",
+          "group": [
+            "Master",
+            "Redis"
           ]
         },
         {
           "name": "Spark master",
-          "description": "bla bla",
-          "url": "http://127.0.0.1:8080/",
+          "text": "Master node.",
+          "url": "http://10.1.0.100:8080/",
           "group": [
-            "master",
-            "spark"
+            "Master",
+            "Spark"
           ]
         },
         {
-          "name": "Data import",
+          "name": "aControl - Data import",
+          "text": "Jobs to import data from database to parquet file.",
           "group": [
-            "acontrol"
+            "aControl",
+            "Job"
           ]
         },
         {
-          "name": "Data analytic",
+          "name": "aControl - Data analytic",
+          "text": "Jobs to analytic data. Load date from  parquet file and put to redis.",
           "group": [
-            "acontrol"
+            "aControl",
+            "Job"
           ]
         }
       ],
-      "description": "bla bla"
+      "description": "Mater node"
     },
     {
       "name": "Slave #1",
       "items": [
         {
           "name": "Supervisor",
-          "url": "http://127.0.0.1:9001/",
-          "group": "supervisor"
+          "text": "Supervisor Dashboard on Slave #1.",
+          "url": "http://10.1.0.201:9001/",
+          "group": [
+            "Slave",
+            "Supervisor"
+          ]
         },
         {
           "name": "Redis commander",
-          "url": "http://127.0.0.1:6101/",
+          "text": "Read only.",
+          "url": "http://10.1.0.201:8081/",
           "group": [
-            "slave",
-            "redis"
+            "Slave",
+            "Redis"
           ]
         },
         {
           "name": "Reporting api",
-          "url": "http://127.0.0.1:9901/manage/health",
+          "url": "http://10.1.0.201:9900/manage/health",
           "group": [
-            "slave",
-            "redis"
+            "Slave",
+            "aControl"
           ]
         }
-      ]
+      ],
+      "description": "Slave Report node"
     },
     {
       "name": "Slave #2",
-      "close": true,
       "items": [
         {
           "name": "Supervisor",
-          "url": "http://127.0.0.1:9002/",
+          "text": "Supervisor Dashboard on Slave #2.",
+          "url": "http://10.1.0.202:9001/",
           "group": [
-            "supervisor"
+            "Slave",
+            "Supervisor"
           ]
         },
         {
           "name": "Redis commander",
-          "url": "http://127.0.0.1:6101/",
+          "text": "Read only.",
+          "url": "http://10.1.0.202:8081/",
           "group": [
-            "slave",
-            "acontrol"
+            "Slave",
+            "Redis"
           ]
         },
         {
           "name": "Reporting api",
-          "url": "http://127.0.0.1:9902/manage/health",
+          "url": "http://10.1.0.202:9900/manage/health",
           "group": [
-            "slave",
-            "acontrol"
+            "Slave",
+            "aControl"
           ]
         }
-      ]
+      ],
+      "visible": false,
+      "description": "Secondary slave Report node"
     },
     {
-      "name": "Wprker #1",
+      "name": "Worker #1",
       "items": [
         {
           "name": "Supervisor",
-          "url": "http://127.0.0.1:9031/",
+          "text": "Supervisor Dashboard on Worker #1.",
+          "url": "http://10.1.0.231:9001/",
           "group": [
-            "supervisor"
+            "Worker",
+            "Supervisor"
           ]
         },
         {
           "name": "Spark worker",
-          "url": "http://127.0.0.1:8081/",
+          "text": "Spark worker on Worker #1.",
+          "url": "http://10.1.0.231:8081/",
           "group": [
-            "worker",
-            "spark"
+            "Worker",
+            "Spark"
           ]
         }
       ]
@@ -127,62 +151,71 @@
       "items": [
         {
           "name": "Supervisor",
-          "url": "http://127.0.0.1:9032/",
+          "text": "Supervisor Dashboard on Worker #2.",
+          "url": "http://10.1.0.232:9001/",
           "group": [
-            "supervisor"
+            "Worker",
+            "Supervisor"
           ]
         },
         {
           "name": "Spark worker",
-          "url": "http://127.0.0.1:8082/",
+          "text": "Spark worker on Worker #2.",
+          "url": "http://10.1.0.232:8081/",
           "group": [
-            "worker",
-            "spark"
+            "Worker",
+            "Spark"
           ]
         }
       ]
     },
     {
-      "name": "Wprker #3",
-      "close": true,
+      "name": "Worker #3",
       "items": [
         {
           "name": "Supervisor",
-          "url": "http://127.0.0.1:9033/",
+          "text": "Supervisor Dashboard on Worker #3.",
+          "url": "http://10.1.0.233:9001/",
           "group": [
-            "supervisor"
+            "Worker",
+            "Supervisor"
           ]
         },
         {
           "name": "Spark worker",
-          "url": "http://127.0.0.1:8083/",
+          "text": "Spark worker on Worker #3.",
+          "url": "http://10.1.0.233:8081/",
           "group": [
-            "worker",
-            "spark"
+            "Worker",
+            "Spark"
           ]
         }
-      ]
+      ],
+      "visible": false
     },
     {
       "name": "Worker #4",
-      "close": true,
       "items": [
         {
           "name": "Supervisor",
-          "url": "http://127.0.0.1:9034/",
+          "text": "Supervisor Dashboard on Worker #4.",
+          "url": "http://10.1.0.234:9001/",
           "group": [
-            "supervisor"
+            "Worker",
+            "Supervisor"
           ]
         },
         {
           "name": "Spark worker",
-          "url": "http://127.0.0.1:8083/",
+          "text": "Spark worker on Worker #4.",
+          "url": "http://10.1.0.234:8081/",
           "group": [
-            "worker",
-            "spark"
+            "Worker",
+            "Spark"
           ]
         }
-      ]
+      ],
+      "visible": false
     }
   ]
 }

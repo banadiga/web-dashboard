@@ -22,9 +22,7 @@ var file = new static.Server('../src', {
 
 // web server
 var server = http.createServer(function (request, response) {
-    console.log('request.url : ', request.url);
     if (request.url.lastIndexOf(proxy_path, 0) == 0) {
-        console.log(request.url.substring(proxy_path.length, request.url.length));
         proxy.web(request, response,
             {target: request.url.substring(proxy_path.length, request.url.length)});
     } else {

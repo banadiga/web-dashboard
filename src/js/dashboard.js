@@ -5,22 +5,29 @@ if (typeof jQuery === 'undefined') {
 }
 
 (function ($) {
+    var updateDelay = 20000,
+        dashboardurl = 'api/dashboard.json',
+        proxyurl = '/cors-proxy/';
+
     // Load templates
-    $.get("template/categories.html", null, function (categories) {
-        $.template("categories", categories);
+    $.get('template/categories.html', null, function (categories) {
+        $.template('categories', categories);
     });
-    $.get("template/groups.html", null, function (groups) {
-        $.template("groups", groups);
+    $.get('template/groups.html', null, function (groups) {
+        $.template('groups', groups);
     });
 
     // Denormalization data
     var denormalization = function (data) {
         var groups = {};
         data.categories.forEach(function (category) {
+            if (category.visible == undefined) {
+                category.visible = true;
+            }
             category.items.forEach(function (item) {
                 item.category = category.name;
                 if (!Array.isArray(item.group)) {
-                    item.group = [item.group == undefined ? "undefined" : item.group];
+                    item.group = [item.group == undefined ? 'Undefined' : item.group];
                 }
                 item.group.forEach(function (group) {
                     var groupObject = groups[group];
@@ -44,18 +51,18 @@ if (typeof jQuery === 'undefined') {
 
     // Build views
     var buildCategories = function (data) {
-        $.tmpl("categories", data).appendTo("#categories");
+        $.tmpl('categories', data).appendTo('#categories');
     };
 
     var buildGroups = function (data) {
-        $.tmpl("groups", data).appendTo("#categories");
+        $.tmpl('groups', data).appendTo('#categories');
     };
 
     // Local cache
     var data;
 
     var onRedrow = function () {
-        $("#categories").empty();
+        $('#categories').empty();
 
         if (location.hash == '#group') {
             buildGroups(data);
@@ -63,46 +70,65 @@ if (typeof jQuery === 'undefined') {
             buildCategories(data);
         }
 
+        $('.bloc').each(function () {
+            var top = $(this);
+            top.find('.panel-title').each(function () {
+                var isVisible = $.parseJSON(top.attr('visible'));
+                if (!isVisible) {
+                    top.children('.panel-body').toggle('slow');
+                } else {
+                    top.find('.panel-title-continue').toggle(0);
+                }
+            }).on('click', function () {
+                top.children('.panel-body').toggle('slow');
+                top.find('.panel-title-continue').toggle(0);
+            });
+        });
+        $('span.glyphicon').tooltip();
+
         setTimeout(checkStatus, 100);
     };
 
     var checkItemStatus = function (top) {
-        var url = top.getAttribute("url");
-        $(top).addClass("glyphicon-repeat icon-refresh-animate");
+        var url = top.getAttribute('url');
+        $(top).addClass('glyphicon-repeat icon-refresh-animate');
         $.ajax({
-            url: '/cors-proxy/' + url,
-            type: "HEAD"
+            url: proxyurl + url,
+            type: 'HEAD'
         }).done(function () {
-            $(top).removeClass("icon-refresh-animate");
-            $(top).removeClass("glyphicon-repeat");
-            $(top).addClass("glyphicon-ok");
+            $(top).removeClass('icon-refresh-animate');
+            $(top).removeClass('glyphicon-repeat');
+            $(top).addClass('glyphicon-ok');
         }).fail(function (response) {
-            $(top).removeClass("icon-refresh-animate");
-            $(top).removeClass("glyphicon-repeat");
+            $(top).removeClass('icon-refresh-animate');
+            $(top).removeClass('glyphicon-repeat');
             if (response.status == 401) {
-                $(top).addClass("glyphicon-user");
+                $(top).addClass('glyphicon-user');
+                $(top).attr('data-original-title', 'Authentication is needed');
             } else {
-                $(top).addClass("glyphicon-off");
+                $(top).addClass('glyphicon-off');
+                $(top).attr('data-original-title', 'Item is off.');
             }
         });
     };
 
     var checkStatus = function () {
-        $(".status").each(function () {
+        $('.status').each(function () {
             checkItemStatus(this)
         })
     };
 
     var onLoad = function () {
         $.ajax({
-            url: "api/dashboard.json", success: function (result) {
+            url: dashboardurl, success: function (result) {
                 data = denormalization(result);
                 onRedrow();
             }
         });
     };
+
     $(window).bind('hashchange', onRedrow);
     $(window).on('load', onLoad);
 
-    setInterval(checkStatus, 20000);
+    setInterval(checkStatus, updateDelay);
 })(jQuery);
