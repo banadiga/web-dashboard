@@ -11,14 +11,24 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <center>
+                                {{if url }}
                                 <a href="${url}" target="_blank">
                                     {{if img }}
-                                    <img src="${img}" alt="${name}"/>
+                                        <img src="${img}" alt="${name}"/>
                                     {{else}}
-                                    ${name}
+                                        <strong>${name}</strong>
                                     {{/if}}
-                                </a><br/>
-                                ${text}
+                                </a>
+                                {{else}}
+                                    {{if img }}
+                                        <img src="${img}" alt="${name}"/>
+                                    {{else}}
+                                        <strong>${name}</strong>
+                                    {{/if}}
+                                {{/if}}
+                                {{if text }}
+                                    <br/>${text}
+                                {{/if}}
                             </center>
                         </div>
                         <div class="panel-footer">
