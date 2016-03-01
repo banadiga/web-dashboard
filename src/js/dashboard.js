@@ -99,6 +99,7 @@ if (typeof jQuery === 'undefined') {
             $(top).removeClass('icon-refresh-animate');
             $(top).removeClass('glyphicon-repeat');
             $(top).addClass('glyphicon-ok');
+            $(top).attr('data-original-title', 'Status is Ok.');
         }).fail(function (response) {
             $(top).removeClass('icon-refresh-animate');
             $(top).removeClass('glyphicon-repeat');
@@ -107,7 +108,7 @@ if (typeof jQuery === 'undefined') {
                 $(top).attr('data-original-title', 'Authentication is needed');
             } else {
                 $(top).addClass('glyphicon-off');
-                $(top).attr('data-original-title', 'Item is off.');
+                $(top).attr('data-original-title', 'Status is OFF.');
             }
         });
     };
