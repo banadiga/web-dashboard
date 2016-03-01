@@ -92,6 +92,7 @@ if (typeof jQuery === 'undefined') {
     var checkItemStatus = function (top) {
         var url = top.getAttribute('url');
         $(top).addClass('glyphicon-repeat icon-refresh-animate');
+        $(top).attr('data-original-title', 'Loading...');
         $.ajax({
             url: proxyurl + url,
             type: 'HEAD',
@@ -100,7 +101,7 @@ if (typeof jQuery === 'undefined') {
             $(top).removeClass('icon-refresh-animate');
             $(top).removeClass('glyphicon-repeat');
             $(top).addClass('glyphicon-ok');
-            $(top).attr('data-original-title', 'Status is Ok.');
+            $(top).attr('data-original-title', 'Status is OK.');
         }).fail(function (response) {
             $(top).removeClass('icon-refresh-animate');
             $(top).removeClass('glyphicon-repeat');
